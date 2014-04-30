@@ -1,12 +1,20 @@
 $(function() {
   var div = $('#tabs');
 
-  chrome.tabs.query({}, function (tabs) {
+  function buildTab(id, str, src) {
+    var tab = $("<p>").addClass('tab').
+                       data('id', id).
+                       data('str', str.toLowerCase());
+    $('<img>').attr('src', src).appendTo(tab);
+    tab.append(str);
+    return tab;
+  }
+  chrome.tabs.query({}, function getTabs(tabs) {
     var matched = [];
 
     $.each(tabs, function(i, tab) {
-      div.append($("<p class='tab' data-id="+ tab.id + " data-str='"+ tab.title.toLowerCase() +"'>").text(tab.title));
-      div.append($("<p class='tab' data-id="+ tab.id + " data-str='"+ tab.url.toLowerCase() +"'>").text(tab.url));
+      div.append(buildTab(tab.id, tab.title, tab.favIconUrl));
+      div.append(buildTab(tab.id, tab.url, tab.favIconUrl));
     });
 
     div.children().first().addClass('selected');
