@@ -3,10 +3,10 @@ $(function() {
 
   function buildTab(id, str, src) {
     var tab = $("<p>").addClass('tab').
-                       data('id', id).
-                       data('str', str.toLowerCase());
+                       attr('data-id', id).
+                       attr('data-str', str.toLowerCase());
     $('<img>').attr('src', src).appendTo(tab);
-    tab.append(str);
+    $('<span>').text(str).appendTo(tab);
     return tab;
   }
   chrome.tabs.query({}, function getTabs(tabs) {
@@ -20,17 +20,17 @@ $(function() {
     div.children().first().addClass('selected');
   });
 
-  function switchToTab(element) {
-    chrome.tabs.update(parseInt(element.attr('data-id')), {active: true});
-  }
-
-  $('#input').on('input', function() {
+  $('#input').on('input', function filterTabs() {
     var value = $(this).val().toLowerCase();
     div.children().each(function(idx, tab) {
       tab = $(tab);
       tab.toggle(tab.attr('data-str').match(value) !== null);
     })
   });
+
+  function switchToTab(element) {
+    chrome.tabs.update(parseInt(element.attr('data-id')), {active: true});
+  }
 
   // "live" click handler binding since we dynamically add .tabs
   $(document).on('click', '.tab', function(e) {

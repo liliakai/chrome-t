@@ -24,25 +24,25 @@ p:hover {
   border-color: #ddf;
   background-color: #ddf;
 }
-p.selected:after, p:hover:after {
-  float: right;
-  font-size: 0.7em;
-  color: #aaa;
-  padding: 0.3em 0.8em;
-}
-p.selected:after {
+p.selected:before {
   content: 'Enter';
+  float: right;
+  padding: 0.3em 0.8em;
+  font-size: 0.7em;
   border: solid 1px #ddd;
-  border-radius: 2px;
   border-width: 1px 2px 2px 1px;
-}
-p:hover:after {
-  content: 'Click';
-  font-style: italic;
+  border-radius: 2px;
+  color: #aaa;
 }
 p img {
-  width: 18px;
-  margin-right: 1em;
+  float: left;
+  width: 1em;
+}
+p span {
+  display: block;
+  margin-left: 2em;
+  margin-right: 4em;
+  line-height: 22px;
 }
 
 </style>
