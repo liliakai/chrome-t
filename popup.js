@@ -3,25 +3,22 @@ $(function() {
   var input = $('#input');
   var div = $('#tabs');
   chrome.tabs.query({}, function (tabs) {
-    all_tabs = tabs;
     var matched = [];
 
-    function filterTabs(str) {
-      matched = [];
-      div.html("");
-      for (i=0; i < all_tabs.length; ++i) {
-        var tab = all_tabs[i];
-        if (tab.title.toLowerCase().match(str.toLowerCase())) {
-          div.append($("<p class='tab' data-id="+ tab.id + ">").text(tab.title));
-        }
-        if (tab.url.toLowerCase().match(str.toLowerCase())) {
-          div.append($("<p class='tab' data-id="+ tab.id + ">").text(tab.url));
-        }
-      }
-      div.children().first().addClass('selected');
-    };
+    for (i=0; i < tabs.length; ++i) {
+      var tab = tabs[i];
+      div.append($("<p class='tab' data-id="+ tab.id + " data-str='"+ tab.title.toLowerCase() +"'>").text(tab.title));
+      div.append($("<p class='tab' data-id="+ tab.id + " data-str='"+ tab.url.toLowerCase() +"'>").text(tab.url));
+    }
 
-    input.on('input', function() { filterTabs(input.val()); });
+    div.children().first().addClass('selected');
+    input.on('input', function() {
+      var value = input.val().toLowerCase();
+      div.children().each(function(idx, tab) {
+        tab = $(tab);
+        tab.toggle(tab.attr('data-str').match(value) !== null);
+      })
+    });
 
     // "live" click handler binding since we dynamically add .tabs
     $(document).on('click', '.tab', function(e) {
@@ -33,19 +30,19 @@ $(function() {
       }
     });
     $(document).on('keydown', function(e) {
-      if (e.keyCode == 40) { // DOWN ARROW
-        var current = $('.selected');
-        if (current.next().length > 0) {
+      if (e.keyCode === 40 || e.keyCode === 38) { // ARROWED
+        var visible = div.children(':visible');
+        var current = div.find('.selected');
+        var idx = visible.index(current);
+        if (e.keyCode == 40 && idx < visible.length - 1) {
+          // DOWN
           current.removeClass('selected');
-          current.next().addClass('selected');
+          $(visible[idx+1]).addClass('selected');
         }
-        e.preventDefault();
-      }
-      if (e.keyCode == 38) { // UP ARROW
-        var current = $('.selected');
-        if (current.prev().length > 0) {
+        else if (e.keyCode == 38 && idx > 0) {
+          // UP
           current.removeClass('selected');
-          current.prev().addClass('selected');
+          $(visible[idx-1]).addClass('selected');
         }
         e.preventDefault();
       }
