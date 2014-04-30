@@ -2,8 +2,12 @@
   "manifest_version": 2,
 
   "name": "chrome-t",
-  "description": "Quickly navigate through open tabs, based on Command-t by @wincent",
+  "description": "Quickly navigate through open tabs from the keyboard",
   "version": "1.0",
+
+  "background": {
+    "scripts": ["background.js"]
+  },
 
   "permissions": [ "tabs" ],
 
@@ -12,9 +16,19 @@
   },
 
   "commands": {
-    "_execute_browser_action": {
+    "some-command": {
       "suggested_key": {
         "default": "Alt+T"
+      },
+      "description": "test"
+    },
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "windows": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y",
+        "chromeos": "Ctrl+Shift+U",
+        "linux": "Ctrl+Shift+J"
       }
     }
   }
