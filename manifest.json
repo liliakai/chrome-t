@@ -5,30 +5,20 @@
   "description": "Quickly navigate through open tabs from the keyboard",
   "version": "1.0",
 
+  "permissions": [ "tabs" ],
+
   "background": {
     "scripts": ["background.js"]
   },
-
-  "permissions": [ "tabs" ],
 
   "browser_action": {
     "default_popup": "popup.html"
   },
 
   "commands": {
-    "some-command": {
-      "suggested_key": {
-        "default": "Alt+T"
-      },
-      "description": "test"
-    },
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Y",
-        "windows": "Ctrl+Shift+Y",
-        "mac": "Command+Shift+Y",
-        "chromeos": "Ctrl+Shift+U",
-        "linux": "Ctrl+Shift+J"
+        "default": "Alt+T"
       }
     }
   }
