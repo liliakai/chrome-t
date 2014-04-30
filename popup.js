@@ -15,7 +15,7 @@ $(function() {
           div.append($("<p class='tab' data-id="+ tab.id + ">").text(tab.title));
         }
         if (tab.url.match(str)) {
-          div.append($("<p class='url tab' data-id="+ tab.id + ">").text(tab.url));
+          div.append($("<p class='tab' data-id="+ tab.id + ">").text(tab.url));
         }
       }
       div.children().first().addClass('selected');
