@@ -39,6 +39,7 @@ $(function() {
           current.removeClass('selected');
           current.next().addClass('selected');
         }
+        e.preventDefault();
       }
       if (e.keyCode == 38) { // UP ARROW
         var current = $('.selected');
@@ -46,6 +47,7 @@ $(function() {
           current.removeClass('selected');
           current.prev().addClass('selected');
         }
+        e.preventDefault();
       }
     });
   });
