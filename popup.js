@@ -41,6 +41,7 @@ $(function() {
         }
       }
       if (e.keyCode == 38) { // UP ARROW
+        var current = $('.selected');
         if (current.prev().length > 0) {
           current.removeClass('selected');
           current.prev().addClass('selected');
