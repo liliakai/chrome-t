@@ -11,10 +11,10 @@ $(function() {
       div.html("");
       for (i=0; i < all_tabs.length; ++i) {
         var tab = all_tabs[i];
-        if (tab.title.match(str)) {
+        if (tab.title.toLowerCase().match(str.toLowerCase())) {
           div.append($("<p class='tab' data-id="+ tab.id + ">").text(tab.title));
         }
-        if (tab.url.match(str)) {
+        if (tab.url.toLowerCase().match(str.toLowerCase())) {
           div.append($("<p class='tab' data-id="+ tab.id + ">").text(tab.url));
         }
       }
