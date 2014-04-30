@@ -11,19 +11,20 @@ p {
   padding: 1em;
   margin: 0;
   border: solid 2px #fff;
+  overflow: hidden;
 }
 
 p:nth-child(2n) {
   background-color: #eee;
 }
 
-p.selected {
+p.selected, p:active {
   background-color: #ffd;
   border-color: #ddf;
 }
-
-p.url {
-  word-break: break-word;
+p:hover {
+  border-color: #ddf;
+  background-color: #ddf;
 }
 </style>
 </head>
