@@ -2,6 +2,11 @@ $(function() {
   var all_tabs = [];
   var input = $('#input');
   var div = $('#tabs');
+
+  function switchToTab(element) {
+    chrome.tabs.update(parseInt(element.attr('data-id')), {active: true});
+  }
+
   chrome.tabs.query({}, function (tabs) {
     var matched = [];
 
@@ -22,11 +27,11 @@ $(function() {
 
     // "live" click handler binding since we dynamically add .tabs
     $(document).on('click', '.tab', function(e) {
-      chrome.tabs.update(parseInt($(e.target).attr('data-id')), {active: true}, function(){});
+      switchToTab($(e.target));
     });
     $(document).on('keypress', function(e) {
       if (e.charCode == 13) {
-        chrome.tabs.update(parseInt($('.selected').attr('data-id')), {active: true}, function(){});
+        switchToTab($('.selected'));
       }
     });
     $(document).on('keydown', function(e) {
