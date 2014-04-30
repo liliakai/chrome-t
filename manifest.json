@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "chrome-t",
+  "description": "Quickly navigate through open tabs, based on Command-t by @wincent",
+  "version": "1.0",
+
+  "permissions": [ "tabs" ],
+
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+T"
+      }
+    }
+  }
+}
