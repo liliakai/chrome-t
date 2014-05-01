@@ -1,9 +1,10 @@
 $(function() {
   var div = $('#tabs');
 
-  function buildTab(id, str, src) {
+  function buildTab(tabId, windowId, str, src) {
     var tab = $("<p>").addClass('tab').
-                       attr('data-id', id).
+                       attr('data-tabId', tabId).
+                       attr('data-windowId', windowId).
                        attr('data-str', str.toLowerCase());
     $('<img>').attr('src', src).appendTo(tab);
     $('<span>').text(str).appendTo(tab);
@@ -13,8 +14,8 @@ $(function() {
     var matched = [];
 
     $.each(tabs, function(i, tab) {
-      div.append(buildTab(tab.id, tab.title, tab.favIconUrl));
-      div.append(buildTab(tab.id, tab.url, tab.favIconUrl));
+      div.append(buildTab(tab.id, tab.windowId, tab.title, tab.favIconUrl));
+      div.append(buildTab(tab.id, tab.windowId, tab.url, tab.favIconUrl));
     });
 
     div.children().first().addClass('selected');
@@ -34,7 +35,10 @@ $(function() {
   });
 
   function switchToTab(element) {
-    chrome.tabs.update(parseInt(element.attr('data-id')), {active: true});
+    var tabId = parseInt(element.attr('data-tabId'));
+    var windowId = parseInt(element.attr('data-windowId'));
+    chrome.tabs.update(tabId, {active: true});
+    chrome.windows.update(windowId, {focused: true});
   }
 
   // "live" click handler binding since we dynamically add .tabs
