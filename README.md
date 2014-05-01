@@ -7,7 +7,9 @@ Type some words from an open tab's title or url.
 
 A list of matches appears: amaze! Also works with regex.
 
-Use arrows/enter or click to open the tab you want.
+Click to open the tab you want or use arrows keys\* and enter.
+
+\*Vim users: Ctrl+j / Ctrl+k
 
 ---
 
