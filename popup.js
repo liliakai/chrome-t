@@ -10,7 +10,9 @@ $(function() {
     $('<img>').attr('src', tab.favIconUrl).appendTo(p);
     $('<span>').addClass('text').text(tab.title).appendTo(p);
     if (tab.title != tab.url) {
-      $('<span>').addClass('url').text(tab.url).appendTo(p.find('.text'));
+      $('<small>').addClass('url').
+                  text(tab.url).
+                  appendTo(p.find('.text'));
     }
     return p;
   }
