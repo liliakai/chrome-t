@@ -55,16 +55,19 @@ $(function() {
     }
   });
   $(document).on('keydown', function(e) {
-    if (e.keyCode === 40 || e.keyCode === 38) { // ARROWED
+    if (
+        e.keyCode === 40 || e.keyCode === 38 || // ARROWED
+      ((e.keyCode == 74 || e.keyCode == 75) && e.ctrlKey) // ctrl + j/k
+    ) {
       var visible = div.children(':visible');
       var current = div.find('.selected');
       var idx = visible.index(current);
-      if (e.keyCode == 40 && idx < visible.length - 1) {
+      if ((e.keyCode == 74 || e.keyCode == 40) && idx < visible.length - 1) {
         // DOWN
         current.removeClass('selected');
         $(visible[idx+1]).addClass('selected');
       }
-      else if (e.keyCode == 38 && idx > 0) {
+      else if ((e.keyCode == 38 || e.keyCode == 75) && idx > 0) {
         // UP
         current.removeClass('selected');
         $(visible[idx-1]).addClass('selected');
