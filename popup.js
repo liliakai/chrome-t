@@ -1,21 +1,22 @@
 $(function() {
   var div = $('#tabs');
 
-  function buildTab(tabId, windowId, str, src) {
-    var tab = $("<p>").addClass('tab').
-                       attr('data-tabId', tabId).
-                       attr('data-windowId', windowId).
-                       attr('data-str', str.toLowerCase());
-    $('<img>').attr('src', src).appendTo(tab);
-    $('<span>').text(str).appendTo(tab);
-    return tab;
+  function buildTab(tab) {
+    var p = $("<p>").addClass('tab').
+                     attr('data-tabId', tab.id).
+                     attr('data-windowId', tab.windowId).
+                     attr('data-title', tab.title.toLowerCase()).
+                     attr('data-url', tab.url.toLowerCase());
+    $('<img>').attr('src', tab.favIconUrl).appendTo(p);
+    $('<span>').addClass('text').text(tab.title).appendTo(p);
+    if (tab.title != tab.url) {
+      $('<span>').addClass('url').text(tab.url).appendTo(p.find('.text'));
+    }
+    return p;
   }
   chrome.tabs.query({}, function getTabs(tabs) {
-    var matched = [];
-
     $.each(tabs, function(i, tab) {
-      div.append(buildTab(tab.id, tab.windowId, tab.title, tab.favIconUrl));
-      div.append(buildTab(tab.id, tab.windowId, tab.url, tab.favIconUrl));
+      div.append(buildTab(tab));
     });
 
     div.children().first().addClass('selected');
@@ -25,7 +26,8 @@ $(function() {
     var value = $(this).val().toLowerCase();
     div.children().each(function(idx, tab) {
       tab = $(tab);
-      tab.toggle(tab.attr('data-str').match(value) !== null);
+      tab.toggle(tab.attr('data-title').match(value) !== null ||
+                 tab.attr('data-url').match(value) !== null);
     })
     var selected = div.find('.selected');
     if (!selected.is(':visible')) {
