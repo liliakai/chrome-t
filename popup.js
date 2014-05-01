@@ -26,6 +26,11 @@ $(function() {
       tab = $(tab);
       tab.toggle(tab.attr('data-str').match(value) !== null);
     })
+    var selected = div.find('.selected');
+    if (!selected.is(':visible')) {
+      selected.removeClass('selected');
+      div.children(':visible').first().addClass('selected');
+    }
   });
 
   function switchToTab(element) {
