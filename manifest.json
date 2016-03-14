@@ -3,7 +3,7 @@
 
   "name": "chrome-t",
   "description": "Quickly navigate through open tabs from the keyboard",
-  "version": "1.0",
+  "version": "1.1",
 
   "permissions": [ "tabs" ],
 
