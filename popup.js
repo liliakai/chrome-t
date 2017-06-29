@@ -48,7 +48,7 @@ $(function() {
 
   // "live" click handler binding since we dynamically add .tabs
   $(document).on('click', '.tab', function(e) {
-    switchToTab($(e.target));
+    switchToTab($(e.target).closest('.tab'));
   });
   $(document).on('keypress', function(e) {
     if (e.charCode == 13) {
