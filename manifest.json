@@ -5,6 +5,11 @@
   "description": "Quickly navigate through open tabs from the keyboard",
   "version": "1.2",
 
+  "icons": {
+    "48": "icons/web/ic_view_list_black_48dp_1x.png",
+    "96": "icons/web/ic_view_list_black_48dp_2x.png"
+  },
+
   "permissions": [ "tabs" ],
 
   "browser_action": {
