@@ -1,5 +1,6 @@
-#Chrome-T
-##Quickly navigate open tabs in chrome
+# Chrome-T
+
+## Quickly navigate open tabs in chrome
 
 Availble via the [Chrome Webstore](https://chrome.google.com/webstore/detail/chrome-t/llpmkggjbfiegebkappodkhnnemngpab).
 
